@@ -1,0 +1,63 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: is this signed-in user a leader or admin?
+    function isLeader() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['leader', 'admin'];
+    }
+
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // ---- users ----
+    // Anyone signed in can read their own profile (needed to check their own role).
+    // A user can create their OWN doc at signup, but only as a plain 'member' —
+    // role can only be escalated by an admin editing it directly (e.g. in the Firebase console).
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId
+                    && request.resource.data.role == 'member';
+      allow update: if isAdmin();
+    }
+
+    // ---- public content: announcements, events, groups, devotions ----
+    // Anyone (including signed-out) can read. Only leaders/admins can write.
+    match /announcements/{docId} {
+      allow read: if true;
+      allow write: if isLeader();
+    }
+    match /events/{docId} {
+      allow read: if true;
+      allow write: if isLeader();
+    }
+    match /groups/{docId} {
+      allow read: if true;
+      allow write: if isLeader();
+    }
+    match /devotions/{docId} {
+      allow read: if true;
+      allow write: if isLeader();
+    }
+
+    // ---- devotion progress: private to each signed-in user ----
+    match /devotionProgress/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ---- prayer requests ----
+    // Anyone (signed in OR anonymous) can submit. Only leaders/admins can read the list.
+    // No update/delete from clients — leaders manage these in the Firebase console if needed.
+    match /prayerRequests/{docId} {
+      allow create: if true;
+      allow read: if isLeader();
+      allow update, delete: if isAdmin();
+    }
+  }
+}

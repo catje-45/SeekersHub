@@ -6,12 +6,18 @@ Built on Firebase's free Spark plan.
 
 ## 1. Create the Firebase project
 
-1. Go to https://console.firebase.google.com → **Add project** → name it (e.g. `church-hub`).
+1. Go to https://console.firebase.google.com → **Add project** → name it (e.g. `seekers-hub`).
 2. Skip Google Analytics (not needed).
 3. Once created, click the **web icon (</>)** to register a web app. Copy the
    `firebaseConfig` object it gives you.
-4. Paste those values into `index.html`, replacing the placeholder
-   `firebaseConfig` object near the top of the `<script type="module">` block.
+4. Paste those values **directly inside `index.html`** — find the
+   `const firebaseConfig = { ... }` block near the top of the
+   `<script type="module">` section (search for `YOUR_API_KEY`) and replace
+   the placeholder values in place.
+
+   ⚠️ **Do not create a separate file** called `firebaseConfig` or similar —
+   the config must live inside `index.html` itself, or the app has no way to
+   read it and will hang on the loading screen forever.
 
 ## 2. Enable Authentication
 
@@ -89,6 +95,18 @@ firebase deploy --only hosting
 to a GitHub repo and connect it in Cloudflare Pages, or drag-and-drop deploy.
 Either works fine — Firestore/Auth calls go straight to Firebase regardless
 of where the static files are hosted.
+
+## Keeping the deployed site clean
+
+This folder includes a `.assetsignore` file. If you're deploying via
+Cloudflare's `wrangler deploy` (as you are), this tells it not to upload
+`.git`, `.wrangler`, `wrangler.jsonc`, and a few other non-app files as
+public static assets — otherwise your git history and config end up
+publicly fetchable from the live site. Keep this file at the project root.
+
+If you already deployed once without it, delete the stray `firebaseConfig`
+file from the repo, commit the `.assetsignore` file, and redeploy — this
+also purges the `.git` folder from the live assets on the next deploy.
 
 ## What's in the MVP
 

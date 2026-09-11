@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seekers Hub — Stay Connected</title>
+<meta name="theme-color" content="#163B2A" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #163B2A;
+    --parchment: #F2F8F3;
+    --sage: #3F7A52;
+    --sage-light: #DCEEDF;
+    --charcoal: #1E3527;
+    --muted: #5E7A69;
+    --hairline: #D8E8DC;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--parchment);
+    color: var(--charcoal);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .heading { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--ink); margin: 0; }
+  .script { font-family: 'Dancing Script', cursive; font-weight: 700; }
+  .wordmark-title { font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); font-size: 19px; line-height: 1.1; }
+  .wordmark-sub {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 3px;
+    color: var(--sage); text-transform: uppercase; font-size: 9.5px; margin-top: 2px;
+  }
+  .wordmark-sub .flourish { height: 1px; background: var(--sage); flex: 0 0 12px; }
+  a { text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* Nav */
+  nav.site {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0;
+  }
+  nav.site .logo { display: flex; align-items: center; gap: 12px; }
+  nav.site .logo-badge {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 2px solid var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 12px;
+    color: var(--sage); text-align: center; line-height: 1.1;
+  }
+  nav.site .wordmark { font-size: 20px; }
+  nav.site .wordmark .script { font-size: 24px; color: var(--ink); }
+  nav.site .links { display: flex; gap: 34px; }
+  nav.site .links a { color: var(--charcoal); font-size: 14.5px; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+  nav.site .links a.active, nav.site .links a:hover { border-bottom-color: var(--sage); color: var(--ink); }
+  nav.site .cta {
+    background: var(--ink); color: #fff; padding: 12px 24px;
+    border-radius: 30px; font-size: 14px; font-weight: 600;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 40px 0 120px;
+    background: radial-gradient(ellipse at 75% 20%, #FDF6E8 0%, var(--parchment) 45%);
+    overflow: hidden;
+  }
+  .hero .wrap { display: flex; align-items: center; gap: 60px; position: relative; z-index: 2; }
+  .hero-copy { flex: 1; min-width: 320px; }
+  .eyebrow {
+    font-size: 12.5px; font-weight: 600; letter-spacing: 2px; color: var(--sage);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .hero h1.display { font-size: 56px; line-height: 1.05; margin-bottom: 6px; }
+  .hero h1.display .script { font-size: 64px; color: var(--sage); display: block; margin-top: -6px; }
+  .hero p.lede { font-size: 16.5px; color: var(--muted); max-width: 440px; margin: 22px 0 32px; line-height: 1.6; }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: #fff; padding: 15px 28px; border-radius: 30px;
+    font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-secondary {
+    background: transparent; color: var(--ink); border: 1.5px solid var(--ink);
+    padding: 15px 28px; border-radius: 30px; font-weight: 600; font-size: 15px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  /* Phone mockup (CSS only, no external images) */
+  .hero-visual { flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative; }
+  .phone {
+    width: 260px; height: 540px; background: #fff; border-radius: 40px;
+    border: 10px solid var(--ink); box-shadow: 0 30px 60px rgba(22,59,42,0.25);
+    padding: 20px 16px; position: relative;
+  }
+  .phone .p-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .phone .p-logo { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--sage); display:flex; align-items:center; justify-content:center; font-family:'Dancing Script',cursive; font-size:9px; color: var(--sage); }
+  .phone .greeting { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .phone .greeting-sub { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+  .phone .verse-card {
+    background: var(--sage-light); border-radius: 12px; padding: 12px 14px; font-size: 10.5px;
+    color: var(--ink); line-height: 1.5; margin-bottom: 16px;
+  }
+  .phone .verse-ref { font-weight: 700; margin-top: 6px; display: block; font-size: 10px; color: var(--sage); }
+  .phone .p-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .phone .p-icon {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--sage-light);
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+  .phone .p-item .p-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .phone .p-item .p-sub { font-size: 9.5px; color: var(--muted); }
+  .brush {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; z-index: 1;
+  }
+  .brush.one { width: 340px; height: 340px; background: var(--sage-light); top: -80px; right: -60px; }
+  .brush.two { width: 260px; height: 260px; background: #FBEFCF; bottom: -60px; left: 10%; }
+
+  /* Feature strip */
+  .feature-strip { background: #fff; padding: 56px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .feature-strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+  .feature-strip .f-icon {
+    width: 58px; height: 58px; border-radius: 50%; background: var(--sage-light);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    font-size: 24px;
+  }
+  .feature-strip h3 { font-size: 16px; margin-bottom: 4px; }
+  .feature-strip p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  /* More than an app */
+  .more-section { padding: 90px 0; }
+  .more-section .wrap { display: flex; gap: 60px; align-items: flex-start; }
+  .more-left { flex: 0 0 300px; }
+  .more-left h2 { font-size: 34px; line-height: 1.15; margin-bottom: 16px; }
+  .more-left h2 .script { color: var(--sage); font-size: 40px; }
+  .more-left p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+  .more-grid { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .more-card .m-icon { font-size: 26px; margin-bottom: 12px; }
+  .more-card h3 { font-size: 15.5px; margin-bottom: 6px; }
+  .more-card p { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+  /* Download CTA */
+  .download-section {
+    background: var(--ink); color: #fff; padding: 70px 0; text-align: center;
+  }
+  .download-section .script { font-size: 40px; color: var(--sage-light); display: block; }
+  .download-section h2 { color: #fff; font-size: 30px; margin-bottom: 8px; }
+  .download-section p.tag { color: #B9D3C2; font-size: 13.5px; letter-spacing: 1.5px; text-transform: uppercase; margin: 18px 0 26px; }
+  .store-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .store-btn {
+    border: 1.5px solid #3F6C52; color: #fff; padding: 13px 26px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .store-btn:hover { background: rgba(255,255,255,0.06); }
+
+  footer { padding: 30px 0; text-align: center; font-size: 12.5px; color: var(--muted); }
+
+  @media (max-width: 860px) {
+    nav.site .links { display: none; }
+    .hero .wrap { flex-direction: column; }
+    .hero h1.display { font-size: 40px; }
+    .hero h1.display .script { font-size: 46px; }
+    .feature-strip .wrap { grid-template-columns: repeat(2, 1fr); }
+    .more-section .wrap { flex-direction: column; }
+    .more-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site">
+    <div class="logo">
+      <img src="icon-192.png" alt="Seekers United" class="logo-badge" style="width:46px;height:46px;border-radius:50%;object-fit:cover;" />
+      <div class="wordmark">
+        <div class="wordmark-title">Seekers</div>
+        <div class="wordmark-sub"><span class="flourish"></span>H u b<span class="flourish"></span></div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#" class="active">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#download">Download</a>
+    </div>
+    <a href="#download" class="cta">Get the App</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="brush one"></div>
+  <div class="brush two"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow">Faith / Community / Purpose</div>
+      <h1 class="display">Stay <span class="script">Connected</span></h1>
+      <p class="lede">Seekers Hub is your all-in-one church app — designed to help you grow in faith, stay connected, and find your people.</p>
+      <div class="btn-row">
+        <a href="#download" class="btn-primary">📱 Get the App</a>
+        <a href="#about" class="btn-secondary">Learn More →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone">
+        <div class="p-top">
+          <img src="icon-192.png" alt="" style="width:30px;height:30px;border-radius:50%;object-fit:cover;" />
+          <div style="font-size:14px;">🔔</div>
+        </div>
+        <div class="greeting">Good morning,</div>
+        <div class="greeting-sub">Keep seeking. God is with you.</div>
+        <div class="verse-card">
+          "For I know the plans I have for you," declares the Lord, "plans to give you hope and a future."
+          <span class="verse-ref">Jeremiah 29:11</span>
+        </div>
+        <div class="p-item"><div class="p-icon">📖</div><div><div class="p-name">Devotions</div><div class="p-sub">Read, listen, and reflect</div></div></div>
+        <div class="p-item"><div class="p-icon">👥</div><div><div class="p-name">Community</div><div class="p-sub">Connect with your church</div></div></div>
+        <div class="p-item"><div class="p-icon">📅</div><div><div class="p-name">Events</div><div class="p-sub">See what's coming up</div></div></div>
+        <div class="p-item" style="border-bottom:none;"><div class="p-icon">💚</div><div><div class="p-name">Give</div><div class="p-sub">Make a difference</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-strip" id="features">
+  <div class="wrap">
+    <div>
+      <div class="f-icon">📖</div>
+      <h3>Daily Devotionals</h3>
+      <p>Be encouraged, every day</p>
+    </div>
+    <div>
+      <div class="f-icon">👥</div>
+      <h3>Church Community</h3>
+      <p>Stay connected</p>
+    </div>
+    <div>
+      <div class="f-icon">📅</div>
+      <h3>Events &amp; Groups</h3>
+      <p>Find your place</p>
+    </div>
+    <div>
+      <div class="f-icon">💚</div>
+      <h3>Give</h3>
+      <p>Make an impact</p>
+    </div>
+  </div>
+</section>
+
+<section class="more-section" id="about">
+  <div class="wrap">
+    <div class="more-left">
+      <h2>More Than <span class="script">an App</span></h2>
+      <p>Seekers Hub is a space to encounter God, be part of a loving community, and live out your faith — wherever you are.</p>
+    </div>
+    <div class="more-grid">
+      <div class="more-card">
+        <div class="m-icon">✝️</div>
+        <h3>Deepen Your Faith</h3>
+        <p>Access powerful devotionals, prayers, and biblical teaching.</p>
+      </div>
+      <div class="more-card">
+        <div class="m-icon">🤝</div>
+        <h3>Build Real Relationships</h3>
+        <p>Find your people and get involved in a small group.</p>
+      </div>
+      <div class="more-card">
+        <div class="m-icon">🌱</div>
+        <h3>Make a Difference</h3>
+        <p>Serve, give, and be part of something bigger.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="download-section" id="download">
+  <div class="wrap">
+    <span class="script">Join our community</span>
+    <h2>Download Seekers Hub Today</h2>
+    <p class="tag">Real People · Real Faith · Together</p>
+    <div class="store-row">
+      <a href="#" class="store-btn">📱 Add to Home Screen (iOS)</a>
+      <a href="#" class="store-btn">🤖 Add to Home Screen (Android)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Seekers Hub — a project of Seekers United
+</footer>
+
+</body>
+</html>

@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Seekers Hub</title>
-<meta name="theme-color" content="#1F2E3D" />
+<meta name="theme-color" content="#163B2A" />
 <link rel="manifest" href="manifest.json" />
 <link rel="apple-touch-icon" href="icon-192.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1F2E3D;
-    --parchment: #FAF6EE;
-    --sage: #7A8B6F;
-    --gold: #C9A15C;
-    --clay: #B5573F;
-    --charcoal: #2B2B26;
-    --hairline: #DDD5C4;
+    --ink: #163B2A;
+    --parchment: #F2F8F3;
+    --sage: #3F7A52;
+    --gold: #6FA37E;
+    --clay: #8A6D3B;
+    --charcoal: #1E3527;
+    --hairline: #D8E8DC;
     --card-bg: #FFFFFF;
-    --muted: #7C7568;
+    --muted: #6C8577;
   }
 
   * { box-sizing: border-box; }
@@ -37,11 +37,24 @@
   }
 
   h1, h2, h3, .serif {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 600;
+    font-family: 'Poppins', -apple-system, sans-serif;
+    font-weight: 700;
     color: var(--ink);
     margin: 0;
   }
+
+  .script {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+  }
+
+  .wordmark-title { font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
+  .wordmark-sub {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 4px;
+    color: var(--sage); text-transform: uppercase;
+  }
+  .wordmark-sub .flourish { height: 1px; background: var(--sage); flex: 0 0 16px; }
 
   #app {
     max-width: 640px;
@@ -67,12 +80,12 @@
   }
   header.top .sub {
     font-size: 12px;
-    color: #C7CFD6;
+    color: #C7DFCE;
     margin-top: 2px;
   }
   header.top button.icon-btn {
     background: none;
-    border: 1px solid #3A4A5A;
+    border: 1px solid #2C5A40;
     color: var(--parchment);
     border-radius: 6px;
     padding: 6px 10px;
@@ -125,14 +138,14 @@
     background: var(--ink);
     display: flex;
     padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
-    border-top: 1px solid #2B3B4B;
+    border-top: 1px solid #1F4A34;
     z-index: 20;
   }
   nav.tabs button {
     flex: 1;
     background: none;
     border: none;
-    color: #93A2AF;
+    color: #8FB89D;
     font-family: 'Inter', sans-serif;
     font-size: 10.5px;
     padding: 8px 2px 6px;
@@ -143,7 +156,7 @@
     gap: 4px;
     border-radius: 8px;
   }
-  nav.tabs button svg { width: 20px; height: 20px; stroke: #93A2AF; fill: none; stroke-width: 1.7; }
+  nav.tabs button svg { width: 20px; height: 20px; stroke: #8FB89D; fill: none; stroke-width: 1.7; }
   nav.tabs button.active { color: var(--gold); }
   nav.tabs button.active svg { stroke: var(--gold); }
 
@@ -247,7 +260,7 @@
     font-weight: 600;
     padding: 3px 9px;
     border-radius: 20px;
-    background: #EFE7D6;
+    background: #DCEEDF;
     color: var(--ink);
     margin-left: 8px;
   }
@@ -318,8 +331,10 @@
 <body>
 
 <div id="loading-screen">
-  <div class="serif">Seekers Hub</div>
-  <div class="sub">Loading&hellip;</div>
+  <img src="icon-192.png" alt="Seekers United" style="width:72px; height:72px; border-radius:16px; margin-bottom:14px;" />
+  <div class="wordmark-title" style="font-size:26px;">Seekers</div>
+  <div class="wordmark-sub" style="font-size:11px; margin-top:4px;"><span class="flourish"></span>H u b<span class="flourish"></span></div>
+  <div class="sub" style="margin-top:10px;">Loading&hellip;</div>
 </div>
 
 <div id="app" style="display:none;">
@@ -503,12 +518,12 @@ import {
 // 1. FIREBASE CONFIG — replace with your project's config values
 // ---------------------------------------------------------------
 const firebaseConfig = {
-  apiKey: "AIzaSyAIiheAiucnZfDPCN4-nHnn7Q7wJcy2X_Y",
-  authDomain: "seekers-hub-11f37.firebaseapp.com",
-  projectId: "seekers-hub-11f37",
-  storageBucket: "seekers-hub-11f37.firebasestorage.app",
-  messagingSenderId: "212033705622",
-  appId: "1:212033705622:web:4fbd7937eeacee9f0214b7"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 // ---------------------------------------------------------------

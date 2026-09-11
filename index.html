@@ -66,33 +66,27 @@
 
   /* Top bar */
   header.top {
-    background: var(--ink);
-    color: var(--parchment);
-    padding: 22px 20px 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--hairline);
+    padding: 14px 18px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-  }
-  header.top h1 {
-    color: var(--parchment);
-    font-size: 22px;
-    letter-spacing: 0.2px;
-  }
-  header.top .sub {
-    font-size: 12px;
-    color: #C7DFCE;
-    margin-top: 2px;
   }
   header.top button.icon-btn {
     background: none;
-    border: 1px solid #2C5A40;
-    color: var(--parchment);
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-family: 'Inter', sans-serif;
+    border: none;
+    color: var(--ink);
+    font-size: 18px;
+    padding: 6px;
     cursor: pointer;
+    line-height: 1;
   }
+  .brand-lockup { display: flex; align-items: center; gap: 9px; }
+  .brand-badge { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+  .brand-text .wordmark-title { font-size: 15px; }
+  .brand-text .wordmark-sub { font-size: 7.5px; margin-top: 1px; }
+  .brand-text .wordmark-sub .flourish { flex-basis: 8px; }
 
   main { padding: 20px; }
 
@@ -104,6 +98,43 @@
     color: var(--muted);
     margin: 4px 0 20px;
     line-height: 1.5;
+  }
+
+  .greeting { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .greeting-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  .verse-card {
+    background: var(--sage-tint, #DCEEDF);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .verse-card .verse-ref { display: block; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--sage); }
+  .verse-card .verse-heart { position: absolute; top: 14px; right: 16px; font-size: 15px; color: var(--sage); cursor: pointer; }
+
+  .quick-links { display: flex; flex-direction: column; gap: 2px; margin-bottom: 26px; }
+  .quick-link {
+    display: flex; align-items: center; gap: 12px;
+    background: #fff; border: 1px solid var(--hairline); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 8px; cursor: pointer;
+  }
+  .quick-link .ql-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--sage-tint, #DCEEDF); color: var(--sage);
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+  }
+  .quick-link .ql-text { flex: 1; }
+  .quick-link .ql-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .quick-link .ql-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  .quick-link .ql-arrow { color: var(--muted); font-size: 15px; }
+
+  .section-label {
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
   }
 
   .item {
@@ -339,18 +370,54 @@
 
 <div id="app" style="display:none;">
   <header class="top">
-    <div>
-      <h1 id="header-title" class="serif">Home</h1>
-      <div class="sub" id="header-sub">Welcome</div>
+    <button class="icon-btn" id="account-btn" aria-label="Menu">☰</button>
+    <div class="brand-lockup">
+      <img src="icon-192.png" alt="Seekers United" class="brand-badge" />
+      <div class="brand-text">
+        <div class="wordmark-title">Seekers</div>
+        <div class="wordmark-sub"><span class="flourish"></span>H u b<span class="flourish"></span></div>
+      </div>
     </div>
-    <button class="icon-btn" id="account-btn">Account</button>
+    <button class="icon-btn" id="bell-btn" aria-label="Notifications">🔔</button>
   </header>
 
   <main>
 
     <!-- HOME -->
     <section class="view active" id="view-home">
-      <p class="lede">Latest news and what's coming up.</p>
+      <div class="greeting" id="home-greeting">Good morning,</div>
+      <div class="greeting-sub">Keep seeking. God is with you.</div>
+
+      <div class="verse-card">
+        <span class="verse-heart" id="verse-heart-btn">♡</span>
+        "For I know the plans I have for you," declares the Lord, "plans to give you hope and a future."
+        <span class="verse-ref">Jeremiah 29:11</span>
+      </div>
+
+      <div class="quick-links">
+        <div class="quick-link" data-goto="devotions">
+          <div class="ql-icon">📖</div>
+          <div class="ql-text"><div class="ql-title">Devotions</div><div class="ql-sub">Read, listen, and reflect</div></div>
+          <div class="ql-arrow">›</div>
+        </div>
+        <div class="quick-link" data-goto="groups">
+          <div class="ql-icon">👥</div>
+          <div class="ql-text"><div class="ql-title">Community</div><div class="ql-sub">Connect with your church</div></div>
+          <div class="ql-arrow">›</div>
+        </div>
+        <div class="quick-link" data-goto="events">
+          <div class="ql-icon">📅</div>
+          <div class="ql-text"><div class="ql-title">Events</div><div class="ql-sub">See what's coming up</div></div>
+          <div class="ql-arrow">›</div>
+        </div>
+        <div class="quick-link" data-goto="give">
+          <div class="ql-icon">💚</div>
+          <div class="ql-text"><div class="ql-title">Give</div><div class="ql-sub">Make a difference</div></div>
+          <div class="ql-arrow">›</div>
+        </div>
+      </div>
+
+      <div class="section-label">Latest news</div>
       <div id="home-announcements"></div>
       <div id="home-empty" class="empty" style="display:none;">
         <div class="serif">Nothing posted yet</div>
@@ -574,14 +641,36 @@ function showView(name) {
   document.querySelectorAll('nav.tabs button').forEach(b => {
     b.classList.toggle('active', b.dataset.view === name);
   });
-  document.getElementById('header-title').textContent = titles[name][0];
-  document.getElementById('header-sub').textContent = titles[name][1];
   updateFab(name);
   loadView(name);
 }
 document.querySelectorAll('nav.tabs button').forEach(b => {
   b.addEventListener('click', () => showView(b.dataset.view));
 });
+
+// Home quick-links jump to their tab
+document.querySelectorAll('.quick-link').forEach(el => {
+  el.addEventListener('click', () => showView(el.dataset.goto));
+});
+
+// Time-of-day greeting
+(function setGreeting() {
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning,' : hour < 18 ? 'Good afternoon,' : 'Good evening,';
+  const el = document.getElementById('home-greeting');
+  if (el) el.textContent = greeting;
+})();
+
+// Decorative verse "save" heart (local toggle only, not persisted server-side)
+document.getElementById('verse-heart-btn').onclick = (e) => {
+  const heart = e.currentTarget;
+  const saved = heart.textContent === '♥';
+  heart.textContent = saved ? '♡' : '♥';
+  toast(saved ? 'Removed from saved verses' : 'Verse saved');
+};
+
+// Bell icon — placeholder until a notifications feature exists
+document.getElementById('bell-btn').onclick = () => toast("You're all caught up");
 
 function updateFab(view) {
   const fab = document.getElementById('fab-add');
